@@ -1,12 +1,13 @@
-**Estrutura de desenvolvimento dos modelos**
+# **Estrutura de desenvolvimento dos modelos**
 
 O desenvolvimento dos modelos preditivos foi conduzido através de duas metodologias computacionais distintas e paralelas, cada uma adaptada para um escopo de predição específico, conforme intitulado Figura 1: "modelos 1-1km" e "modelos final 10km". Ambas as abordagens seguiram um pipeline estruturado de pré-processamento de dados, seleção de features, treinamento, otimização e seleção de modelos, levando na interpretação dos modelos finais. 
 
 **Figura 1**
 ![alt text](image.png)
-Legenda:
 
-**Metodologia para os Modelos de predição de Tcore a cada 1-1km**
+**Figura 1.** Pipelines metodológicos para a construção e avaliação dos modelos de machine learning. São apresentadas duas abordagens distintas. A superior ("1-1km") envolve uma etapa de pré-processamento e filtragem de dados, seguida pela criação de três subconjuntos de features, divisão 80/20 (treino/teste) e otimização de modelos com GroupKFold (k=5). A inferior ("10km") gera os subconjuntos diretamente dos dados originais, com divisão 70/30 e otimização via KFold padrão (k=5). Ambas as metodologias testam os algoritmos LASSO, Decision Tree, Random Forest e XGBoost, e utilizam SHAP para a interpretabilidade dos modelos finais selecionados.
+
+## **Metodologia para os Modelos de predição de Tcore a cada 1-1km**
 
 A primeira abordagem metodológica iniciou-se com o pré-processamento do **DatSet original**. Esta etapa envolveu um tratamento rigoroso dos dados, que incluiu: (i) a exclusão de todas as instâncias (linhas) em que a kilometragem era igual a zero, garantindo que a base de dados contemplasse apenas dados durante o exercício fśico; (ii) a aplicação de uma seleção de características (features) inicial, baseada no conhecimento de domínio fisiológico ou em análises exploratórias preliminares; e (iii) a engenharia de uma nova feature, denominada "trial_id", para identificar o ensio clínico afim de evitar a superestimação do valor de predição do algoritmo. O resultado deste processo foi um **Dataset Filtrado**, que serviu como base para as etapas subsequentes.
 
@@ -20,7 +21,8 @@ Após o treinamento e a otimização, procedeu-se à seleção do **melhor model
 
 
 
-**Metodologia para os Modelos de predição de Tcore ao final de 10km**
+## **Metodologia para os Modelos de predição de Tcore ao final de 10km**
+
 A segunda abordagem metodológica, embora estruturalmente similar à primeira, apresentou modificações chave. Partindo de um DataSet reduzido orinundo do trabalho de Andrede et al., 2024, denomionado no fluxograma de **DataSet original**, a primeira etapa consistiu em uma seleção de features, gerando três subconjuntos de dados: **Dataset 1** (WBGT, Running Speed, Inicitial_core, body_mass, Tcore-Tskin, Tskinmean, sweat_rate, Vo2Max, HR, Delta_mass), **Dataset 2** (WBGT, Running Speed, Inicitial_core, Tcore-Tskin, Tskinmean, sweat_rate, Vo2Max, HR, Delta_mass) e **Dataset 3** (WBGT, Running Speed, Tcore-Tskin, sweat_rate, Vo2Max, HR). Para cada um desses três datasets, a partição dos dados foi ajustada para uma proporção de 70% para treino e 30% para teste, uma escolha de proporção que é justificada pela base de dados reduzida. O conjunto de algoritmos avaliados permaneceu o mesmo (LASSO, Decision Tree, Random Forest, XGBoost), e a otimização de hiperparâmetros também foi realizada.
 
 Uma diferença metodológica crucial reside na estratégia de validação cruzada: nesta segunda abordagem, foi utilizada a KFold padrão com 5 folds (k=5), em vez da GroupKFold. Essa mudança implica que não havia uma estrutura de agrupamento nos dados que necessitasse de tratamento especial.

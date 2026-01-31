@@ -12,6 +12,7 @@ The repository provides data preprocessing scripts, model training pipelines, an
 
 ## 📌 Repository Structure
 
+```text
 tcore/
 │
 ├── data/
@@ -31,7 +32,7 @@ tcore/
 ├── environment.yml        # Optional Conda environment specification
 ├── requirements.txt       # Python dependencies
 └── README.md
-
+```
 ---
 
 ## 📊 Datasets

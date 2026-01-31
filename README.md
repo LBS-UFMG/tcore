@@ -15,27 +15,22 @@ The repository provides data preprocessing scripts, model training pipelines, an
 tcore/
 │
 ├── data/
-│ ├── raw/ # Original dataset obtained from Andrade et al.
-│ ├── processed/ # Preprocessed datasets (DS1–DS6)
+│   ├── raw/               # Original dataset obtained from Andrade et al.
+│   └── processed/         # Preprocessed datasets (DS1–DS6)
 │
-├── notebooks/ # Jupyter notebooks for data analysis and experiments
+├── notebooks/             # Jupyter notebooks for data analysis and experiments
 │
 ├── src/
-│ ├── preprocessing/ # Data cleaning and dataset construction scripts
-│ ├── models/ # Model training scripts
-│ ├── evaluation/ # Model evaluation and metrics computation
-│ └── utils/ # Helper functions
+│   ├── preprocessing/     # Data cleaning and dataset construction scripts
+│   ├── models/             # Model training scripts
+│   ├── evaluation/         # Model evaluation and metrics computation
+│   └── utils/              # Helper functions
 │
-├── results/ # Output metrics, model results, and figures
+├── results/               # Output metrics, model results, and figures
 │
-├── environment.yml # Optional Conda environment specification
-├── requirements.txt # Python dependencies
+├── environment.yml        # Optional Conda environment specification
+├── requirements.txt       # Python dependencies
 └── README.md
-
-yaml
-Copiar código
-
-*(Folder names may vary slightly depending on repository organization.)*
 
 ---
 
@@ -102,35 +97,44 @@ Algorithms evaluated:
 ```bash
 git clone https://github.com/LBS-UFMG/tcore.git
 cd tcore
+```
+
 2. Create environment
 Using Conda:
 
-bash
-Copiar código
+```bash
 conda env create -f environment.yml
 conda activate tcore
+```
+
 or pip:
 
-bash
-Copiar código
+```bash
 pip install -r requirements.txt
+```
+
 3. Run preprocessing
-bash
-Copiar código
+```bash
 python src/preprocessing/build_datasets.py
+```
+
 4. Train models
 Example:
 
-bash
-Copiar código
+```bash
 python src/models/train_models.py --dataset DS5 --model xgboost
+```
+
 5. Evaluate models
-bash
-Copiar código
+
+```bash
+
 python src/evaluation/evaluate_models.py
+```
+
 Results will be saved in the results/ directory.
 
-📈 Output
+### 📈 Output
 The repository enables reproduction of:
 
 Model performance metrics
@@ -141,7 +145,7 @@ Hyperparameter configurations
 
 SHAP feature importance analyses
 
-🔍 Model Interpretation
+### 🔍 Model Interpretation
 SHAP analysis is used to:
 
 Explain individual predictions
@@ -152,33 +156,36 @@ Understand model decision patterns
 
 This improves transparency of ML-based predictions.
 
-⚠️ Limitations
+### ⚠️ Limitations
 Kilometer-level datasets contain repeated measurements from the same individuals and should not be treated as independent samples.
 
 Model performance depends on controlled laboratory conditions and may vary under real-world environments.
 
-📜 Data Availability
+### 📜 Data Availability
 All data and scripts required to reproduce the analyses are provided in this repository, following anonymization procedures described in the original study.
 
-📚 Citation
+### 📚 Citation
 If you use this repository, please cite:
 
-css
-Copiar código
-Gontijo L. et al. Machine Learning Prediction of Core Body Temperature in Recreational Athletes Exercising Under Heat Stress. (Year).
+```css
+
+Gontijo L. et al. Machine Learning Prediction of Core Body Temperature in Recreational Athletes Exercising Under Heat Stress. (2026).
+```
 and
 
-arduino
-Copiar código
+```arduino
 Andrade MT et al. Predicting the body core temperature of recreational athletes at the end of a 10 km self-paced run under environmental heat stress. Experimental Physiology. 2023.
-🤝 Contributions
+```
+
+### 🤝 Contributions
 Contributions, bug reports, and suggestions are welcome. Please open an issue or submit a pull request.
 
-📄 License
-Specify license information here.
+### 📄 License
+MIT
 
-📬 Contact
+### 📬 Contact
+
 For questions regarding data or scripts:
 
 Laboratory of Bioinformatics and Systems (LBS)
-Federal University of Minas Gerais (UFMG) – Brazil
+Universidade Federal de Minas Gerais (UFMG) – Brazil
